@@ -20,8 +20,6 @@ class AllCategoryScreen extends StatelessWidget {
       body: FutureBuilder(
         future: service.getAllCategories(),
         builder: (BuildContext context, AsyncSnapshot<APIResponse> snapshot) {
-          print('SNAPSHOT DATA HERE!');
-          print(snapshot.data?.data);
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
