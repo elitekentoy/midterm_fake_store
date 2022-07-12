@@ -1,10 +1,12 @@
 import 'package:fake_store/screens/products_by_category.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../services/api_service.dart';
 
 class AllCategoryScreen extends StatelessWidget {
   const AllCategoryScreen({Key? key}) : super(key: key);
+  ApiService get service => GetIt.I<ApiService>();
 
   @override
   Widget build(BuildContext context) {
