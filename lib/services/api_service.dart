@@ -77,4 +77,24 @@ class ApiService {
       return APIResponse(error: true, errorMessage: 'An error occurred');
     });
   }
+
+  Future<APIResponse<List<Product>>> getProductsByCategory(String category) {
+    return http
+        .get(Uri.parse('$baseUrl/products/category/$category'))
+        .then((data) {
+      print(data.statusCode);
+      print(data.body);
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        final products = <Product>[];
+
+        for (var item in jsonData) {
+          products.add(Product.fromJson(item));
+        }
+        return APIResponse<List<Product>>(data: products);
+      }
+      return APIResponse<List<Product>>(
+          error: true, errorMessage: 'An error occurred');
+    });
+  }
 }
