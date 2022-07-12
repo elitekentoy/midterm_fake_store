@@ -50,12 +50,12 @@ class LoginScreen extends StatelessWidget {
               height: 60,
               child: ElevatedButton(
                 onPressed: () async {
-                  final getToken = await login(
+                  final getToken = await service.getToken(
                     nameCtrl.text,
                     passwordCtrl.text,
                   );
 
-                  if (getToken != null && getToken['token'] != null) {
+                  if (getToken != null && getToken.data['token'] != null) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Successfully logged in'),
