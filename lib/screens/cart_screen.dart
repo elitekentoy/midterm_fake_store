@@ -57,9 +57,8 @@ class CartScreen extends StatelessWidget {
                       p.data!.image.toString(),
                       height: 40,
                     ),
-                    //TO:DO TO UPDATE QUANTITY
-                    subtitle: const Text(
-                      'Quantity: 1',
+                    subtitle: Text(
+                      product['quantity'].toString(),
                     ),
                     // trailing: IconButton(
                     //   icon: const Icon(Icons.delete, color: Colors.red),
