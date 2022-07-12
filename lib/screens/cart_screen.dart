@@ -62,17 +62,17 @@ class CartScreen extends StatelessWidget {
                     subtitle: const Text(
                       'Quantity: 1',
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
-                      onPressed: () async {
-                        await deleteCart('1');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Cart deleted successfully.'),
-                          ),
-                        );
-                      },
-                    ),
+                    // trailing: IconButton(
+                    //   icon: const Icon(Icons.delete, color: Colors.red),
+                    //   onPressed: () async {
+                    //     await deleteCart('1');
+                    //     ScaffoldMessenger.of(context).showSnackBar(
+                    //       const SnackBar(
+                    //         content: Text('Cart deleted successfully.'),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                   );
                 },
               );
