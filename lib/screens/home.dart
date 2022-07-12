@@ -60,12 +60,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                     subtitle: Text(product.price.toString()),
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) => ProductDetailScreen(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ProductDetailScreen(
+                            id: index,
+                          ),
+                        ),
+                      );
                     },
                   );
                 }),
