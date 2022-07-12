@@ -39,8 +39,8 @@ class CartScreen extends StatelessWidget {
             itemBuilder: (_, index) {
               final product = products[index];
               return FutureBuilder(
-                future: service.getSingleProduct(
-                    int.parse(products![index].id.toString())),
+                future: service
+                    .getSingleProduct(int.parse(products[index].id.toString())),
                 builder: (BuildContext context,
                     AsyncSnapshot<APIResponse<Product?>> productSnapshot) {
                   if (!productSnapshot.hasData) {

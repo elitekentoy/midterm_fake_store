@@ -99,12 +99,11 @@ class ApiService {
 
   Future<APIResponse<Cart>> getCart(int id) {
     return http.get(Uri.parse('$baseUrl/carts/$id')).then((data) {
-      print(data.statusCode);
-      print(data.body);
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
+        final personCart = Cart.fromJson(jsonData);
 
-        return APIResponse<Cart>(data: jsonData);
+        return APIResponse<Cart>(data: personCart);
       }
       return APIResponse<Cart>(error: true, errorMessage: 'An error occurred');
     });
