@@ -52,4 +52,18 @@ class ApiService {
           error: true, errorMessage: 'An error occurred');
     });
   }
+
+  Future<APIResponse<Product>> getSingleProduct(int productID) {
+    productID = productID + 1;
+    return http.get(Uri.parse('$baseUrl/products/$productID')).then((data) {
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        final product = Product.fromJson(jsonData);
+
+        return APIResponse<Product>(data: product);
+      }
+      return APIResponse<Product>(
+          error: true, errorMessage: 'An error occurred');
+    });
+  }
 }
