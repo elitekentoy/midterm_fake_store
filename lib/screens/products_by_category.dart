@@ -42,14 +42,14 @@ class ProductsByCategoryScreen extends StatelessWidget {
                   width: 50,
                 ),
                 subtitle: Text(products.data![index].price.toString()),
-                // onTap: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (_) => ProductDetailScreen(id: productId),
-                //     ),
-                //   );
-                // },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ProductDetailScreen(id: productId),
+                    ),
+                  );
+                },
               );
             }),
           );
