@@ -11,7 +11,7 @@ class Cart {
   factory Cart.fromJson(Map<String, dynamic> data) {
     return Cart(
       id: int.parse(data['id'].toString()),
-      userId: data['userId'],
+      userId: int.parse(data['userId'].toString()),
       date: DateTime.parse(data['date']),
       products: data['products'],
     );
@@ -20,7 +20,7 @@ class Cart {
   Map<String, dynamic> toJson() {
     return {
       "userId": userId,
-      "date": date,
+      "date": date!.toIso8601String(),
       "products": products,
     };
   }
