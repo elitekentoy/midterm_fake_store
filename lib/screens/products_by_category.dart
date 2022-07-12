@@ -47,7 +47,8 @@ class ProductsByCategoryScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => ProductDetailScreen(
-                          id: int.parse(products.data![index].id.toString())),
+                          id: int.parse(products.data![index].id.toString()) -
+                              1),
                     ),
                   );
                 },
