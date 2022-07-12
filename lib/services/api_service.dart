@@ -34,4 +34,22 @@ class ApiService {
           error: true, errorMessage: 'An error occurred');
     });
   }
+
+  Future<APIResponse<List<Product>>> getLimitedProducts(int numberOfProducts) {
+    return http
+        .get(Uri.parse('$baseUrl/products?limit=$numberOfProducts'))
+        .then((data) {
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        final products = <Product>[];
+
+        for (var item in jsonData) {
+          products.add(Product.fromJson(item));
+        }
+        return APIResponse<List<Product>>(data: products);
+      }
+      return APIResponse<List<Product>>(
+          error: true, errorMessage: 'An error occurred');
+    });
+  }
 }
