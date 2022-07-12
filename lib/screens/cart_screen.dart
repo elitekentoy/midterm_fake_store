@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../models/api_response.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
@@ -19,7 +20,8 @@ class CartScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: service.getCart(1),
-        builder: (BuildContext context, AsyncSnapshot<Cart?> cartSnapshot) {
+        builder: (BuildContext context,
+            AsyncSnapshot<APIResponse<Cart?>> cartSnapshot) {
           if (!cartSnapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -30,16 +32,17 @@ class CartScreen extends StatelessWidget {
             );
           }
 
-          final products = cartSnapshot.data!.products;
+          final products = cartSnapshot.data!.data!.products;
           return ListView.separated(
-            itemCount: products.length,
+            itemCount: products!.length,
             separatorBuilder: (_, __) => const Divider(thickness: 1),
             itemBuilder: (_, index) {
               final product = products[index];
               return FutureBuilder(
-                future: getProduct(product.productId),
+                future: service.getSingleProduct(
+                    int.parse(products![index].id.toString())),
                 builder: (BuildContext context,
-                    AsyncSnapshot<Product?> productSnapshot) {
+                    AsyncSnapshot<APIResponse<Product?>> productSnapshot) {
                   if (!productSnapshot.hasData) {
                     return const LinearProgressIndicator();
                   }
@@ -50,13 +53,14 @@ class CartScreen extends StatelessWidget {
                   }
 
                   return ListTile(
-                    title: Text(p.title),
+                    title: Text(p.data!.title.toString()),
                     leading: Image.network(
-                      '[image]',
+                      p.data!.image.toString(),
                       height: 40,
                     ),
-                    subtitle: Text(
-                      'Quantity: '[$quantity]',
+                    //TO:DO TO UPDATE QUANTITY
+                    subtitle: const Text(
+                      'Quantity: 1',
                     ),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
