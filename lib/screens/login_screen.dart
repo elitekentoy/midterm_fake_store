@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../services/api_service.dart';
+import 'package:get_it/get_it.dart';
 import 'home.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
+  ApiService get service => GetIt.I<ApiService>();
 
   final TextEditingController nameCtrl = TextEditingController(
     text: 'mor_2314',
@@ -65,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                       () => Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const HomeScreen(),
+                          builder: (_) => const TestHome(),
                         ),
                       ),
                     );
@@ -89,6 +91,23 @@ class LoginScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TestHome extends StatelessWidget {
+  const TestHome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: const Text(
+        'THIS IS TEST',
+      )),
+      body: const Center(
+        child: Text('TEST RANI HA'),
       ),
     );
   }
