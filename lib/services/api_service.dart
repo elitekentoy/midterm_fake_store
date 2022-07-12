@@ -66,4 +66,15 @@ class ApiService {
           error: true, errorMessage: 'An error occurred');
     });
   }
+
+  Future<APIResponse> getAllCategories() {
+    return http.get(Uri.parse('$baseUrl/products/categories')).then((data) {
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+
+        return APIResponse(data: jsonData);
+      }
+      return APIResponse(error: true, errorMessage: 'An error occurred');
+    });
+  }
 }

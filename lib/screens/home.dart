@@ -15,29 +15,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Home'),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.redAccent,
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.view_list),
-      //       onPressed: () => Navigator.push(
-      //         context,
-      //         MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
-      //       ),
-      //     ),
-      //     IconButton(
-      //       icon: const Icon(Icons.shopping_cart),
-      //       onPressed: () => Navigator.push(
-      //         context,
-      //         MaterialPageRoute(
-      //           builder: (_) => const CartScreen(),
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      appBar: AppBar(
+        title: const Text('Home'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.view_list),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
+            ),
+          ),
+          // IconButton(
+          //   icon: const Icon(Icons.shopping_cart),
+          //   onPressed: () => Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (_) => const CartScreen(),
+          //     ),
+          //   ),
+          // ),
+        ],
+      ),
       body: Center(
         child: FutureBuilder(
             future: service.getAllProducts(),
