@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
       body: FutureBuilder(
         future: service.getCart(1),
         builder: (BuildContext context,
-            AsyncSnapshot<APIResponse<Cart?>> cartSnapshot) {
+            AsyncSnapshot<APIResponse<Cart>> cartSnapshot) {
           if (!cartSnapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -32,15 +32,14 @@ class CartScreen extends StatelessWidget {
             );
           }
 
-          final products = cartSnapshot.data!.data!.products;
+          final products = cartSnapshot.data!.data?.products;
           return ListView.separated(
             itemCount: products!.length,
             separatorBuilder: (_, __) => const Divider(thickness: 1),
             itemBuilder: (_, index) {
               final product = products[index];
               return FutureBuilder(
-                future: service
-                    .getSingleProduct(int.parse(products[index].id.toString())),
+                future: service.getSingleProduct(product['productId']),
                 builder: (BuildContext context,
                     AsyncSnapshot<APIResponse<Product?>> productSnapshot) {
                   if (!productSnapshot.hasData) {
