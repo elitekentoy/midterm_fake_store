@@ -95,20 +95,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-class TestHome extends StatelessWidget {
-  const TestHome({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: const Text(
-        'THIS IS TEST',
-      )),
-      body: const Center(
-        child: Text('TEST RANI HA'),
-      ),
-    );
-  }
-}
