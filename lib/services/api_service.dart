@@ -82,8 +82,6 @@ class ApiService {
     return http
         .get(Uri.parse('$baseUrl/products/category/$category'))
         .then((data) {
-      print(data.statusCode);
-      print(data.body);
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
         final products = <Product>[];
