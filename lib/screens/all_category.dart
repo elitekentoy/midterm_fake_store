@@ -1,3 +1,4 @@
+import 'package:fake_store/models/api_response.dart';
 import 'package:fake_store/screens/products_by_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -18,13 +19,15 @@ class AllCategoryScreen extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: service.getAllCategories(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<APIResponse> snapshot) {
+          print('SNAPSHOT DATA HERE!');
+          print(snapshot.data?.data);
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
           final categories = snapshot.data;
           return ListView.builder(
-              itemCount: categories.length,
+              itemCount: categories!.data!.length,
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 2,
@@ -45,7 +48,7 @@ class AllCategoryScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(40),
                       child: Center(
                         child: Text(
-                          categoryName,
+                          categories.data![index].toString(),
                           style: const TextStyle(
                             fontSize: 25,
                           ),
