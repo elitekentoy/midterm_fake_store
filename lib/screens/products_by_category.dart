@@ -32,16 +32,16 @@ class ProductsByCategoryScreen extends StatelessWidget {
 
           return ListView.separated(
             separatorBuilder: (_, __) => const Divider(thickness: 1),
-            itemCount: products.length,
+            itemCount: products.data!.length,
             itemBuilder: ((context, index) {
               return ListTile(
-                title: Text('[title]'),
+                title: Text(products.data![index].title.toString()),
                 leading: Image.network(
-                  '[image]',
+                  products.data![index].image.toString(),
                   height: 50,
                   width: 50,
                 ),
-                subtitle: Text('\$price'),
+                subtitle: Text(products.data![index].price.toString()),
                 onTap: () {
                   Navigator.push(
                     context,
