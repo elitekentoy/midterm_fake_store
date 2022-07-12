@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fake_store/models/api_response.dart';
+import 'package:fake_store/models/cart.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/product.dart';
@@ -93,6 +94,19 @@ class ApiService {
       }
       return APIResponse<List<Product>>(
           error: true, errorMessage: 'An error occurred');
+    });
+  }
+
+  Future<APIResponse<Cart>> getCart(int id) {
+    return http.get(Uri.parse('$baseUrl/carts/$id')).then((data) {
+      print(data.statusCode);
+      print(data.body);
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+
+        return APIResponse<Cart>(data: jsonData);
+      }
+      return APIResponse<Cart>(error: true, errorMessage: 'An error occurred');
     });
   }
 }
