@@ -10,10 +10,18 @@ class Cart {
 
   factory Cart.fromJson(Map<String, dynamic> data) {
     return Cart(
-      id: data['id'],
-      userId: data['userId:'],
+      id: int.parse(data['id'].toString()),
+      userId: data['userId'],
       date: DateTime.parse(data['date']),
       products: data['products'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "userId": userId,
+      "date": date,
+      "products": products,
+    };
   }
 }
