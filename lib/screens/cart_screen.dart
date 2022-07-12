@@ -18,7 +18,7 @@ class CartScreen extends StatelessWidget {
         backgroundColor: Colors.red,
       ),
       body: FutureBuilder(
-        future: getCart('1'),
+        future: service.getCart(1),
         builder: (BuildContext context, AsyncSnapshot<Cart?> cartSnapshot) {
           if (!cartSnapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
