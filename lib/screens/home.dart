@@ -1,3 +1,4 @@
+import 'package:fake_store/models/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -14,57 +15,58 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: true,
-        backgroundColor: Colors.redAccent,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.view_list),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const CartScreen(),
-              ),
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Home'),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.redAccent,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.view_list),
+      //       onPressed: () => Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (_) => const AllCategoryScreen()),
+      //       ),
+      //     ),
+      //     IconButton(
+      //       icon: const Icon(Icons.shopping_cart),
+      //       onPressed: () => Navigator.push(
+      //         context,
+      //         MaterialPageRoute(
+      //           builder: (_) => const CartScreen(),
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: Center(
         child: FutureBuilder(
-            future: getAllProducts(),
-            builder: (_, AsyncSnapshot<List<Product>> snapshot) {
+            future: service.getAllProducts(),
+            builder: (_, AsyncSnapshot<APIResponse<List<Product>>> snapshot) {
               if (!snapshot.hasData) {
                 return const CircularProgressIndicator();
               }
               final products = snapshot.data!;
               return ListView.separated(
                 separatorBuilder: (_, __) => const Divider(thickness: 1),
-                itemCount: products.length,
+                itemCount: products.data!.length,
                 itemBuilder: ((context, index) {
-                  final product = snapshot.data![index];
+                  final product = snapshot.data!.data![index];
+                  print(product.title);
                   return ListTile(
-                    title: Text('[title]'),
+                    title: Text(product.title.toString()),
                     leading: Image.network(
-                      '[image]',
+                      product.image.toString(),
                       height: 50,
                       width: 50,
                     ),
-                    subtitle: Text('\$price}'),
+                    subtitle: Text(product.price.toString()),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ProductDetailScreen(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (_) => ProductDetailScreen(),
+                      //   ),
+                      // );
                     },
                   );
                 }),
