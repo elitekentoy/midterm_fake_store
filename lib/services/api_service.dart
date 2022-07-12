@@ -114,7 +114,7 @@ class ApiService {
     return http.delete(Uri.parse('$baseUrl/carts/$id')).then((data) {
       if (data.statusCode == 200) {
         final jsonData = json.decode(data.body);
-        final personCart = Cart.fromJson(jsonData);
+        print(jsonData);
 
         print('Product ID $id has been successfully deleted');
       }
